@@ -1,0 +1,32 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+{% for comment in comments %}
+    <div class="comments">
+        <p class="">
+            {{ comment.body }}
+            <span class="">
+                {{ comment.created_on }}
+            </span>
+        </p>
+    </div>
+{% endfor %}
+
+<div class="card-body">
+    {% if new_comment %}
+    <div class="alert alert-success" role="alert">
+        Your comment is awaiting moderation
+    </div>
+    {% else %}
+    <h3>Add a comment</h3>
+
+    <form method="POST">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </form>
+    {% endif %}
+</div>
+
+{% endblock %}

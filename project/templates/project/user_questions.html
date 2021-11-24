@@ -1,0 +1,28 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<h1 class="mb-3">Questions by {{ view.kwargs.username }}</h1>
+{% for question in question %}
+
+<article class="media content-section">
+    <img class= "rounded-circle article-img" src="{{ question.author.profile.image.url }}">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'user_questions' question.author.username %}"> {{ question.author }}</a>
+            <small class="text-muted"> {{ question.date_published }} </small>
+        </div>
+        <div>
+            <h3> <a class="article-topic" href="{% url 'question_detail' question.id %}"> {{ question.question }} </a> </h3>
+            
+
+        </div>
+
+        
+        
+
+    </div>
+</article>
+
+{% endfor %}
+{% endblock %}
